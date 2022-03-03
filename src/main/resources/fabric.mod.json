@@ -1,10 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "stretchydays",
   "version": "${version}",
-
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Stretchy Days",
+  "description": "A mod for changing the length of the day/night cycle!",
   "authors": [
     "Me!"
   ],
@@ -12,20 +11,17 @@
     "homepage": "https://fabricmc.net/",
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
-
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
-
+  "icon": "assets/stretchydays/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "net.avitech.stretchydays.StretchyDaysMod"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "stretchydays.mixins.json"
   ],
-
   "depends": {
     "fabricloader": ">=0.13.3",
     "fabric": "*",
