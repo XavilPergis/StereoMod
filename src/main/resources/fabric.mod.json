@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "stretchydays",
+  "id": "testbed",
   "version": "${version}",
   "name": "Stretchy Days",
   "description": "A mod for changing the length of the day/night cycle!",
@@ -12,15 +12,15 @@
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
   "license": "CC0-1.0",
-  "icon": "assets/stretchydays/icon.png",
+  "icon": "assets/testbed/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.avitech.stretchydays.StretchyDaysMod"
+      "net.avitech.testbed.TestbedMod"
     ]
   },
   "mixins": [
-    "stretchydays.mixins.json"
+    "daystretch.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.13.3",
