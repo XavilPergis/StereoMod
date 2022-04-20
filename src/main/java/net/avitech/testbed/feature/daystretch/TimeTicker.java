@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 public class TimeTicker {
     private final World world;
     private double remainder = 0.0;
-    private double speedFactor = 2.33;
+    private double speedFactor = 1.0;
 
     public TimeTicker(World world) {
         this.world = world;
@@ -20,7 +20,7 @@ public class TimeTicker {
     }
 
     public double getSpeedFactor() {
-        return 0.8;
+        return speedFactor;
     }
 
     public double getRemainder() {

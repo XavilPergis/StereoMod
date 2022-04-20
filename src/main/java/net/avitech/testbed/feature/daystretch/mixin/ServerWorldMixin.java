@@ -32,6 +32,7 @@ public abstract class ServerWorldMixin implements TimeTickableWorld {
 		}
 	}
 
+	@SuppressWarnings("resource")
 	@Inject(method = "setTimeOfDay", at = @At("HEAD"))
 	private void injectSetTimeOfDay(long timeOfDay, CallbackInfo info) {
 		ServerWorld self = (ServerWorld) (Object) this;
@@ -56,6 +57,7 @@ public abstract class ServerWorldMixin implements TimeTickableWorld {
 		return nextTimeOfDay != expectedTimeOfDay;
 	}
 
+	@SuppressWarnings("resource")
 	private void broadcastPacket(Packet<?> packet) {
 		ServerWorld self = (ServerWorld) (Object) this;
 		PlayerManager playerManager = self.getServer().getPlayerManager();
