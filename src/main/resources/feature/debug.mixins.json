@@ -1,0 +1,13 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "net.avitech.testbed.feature.debug.mixin",
+    "compatibilityLevel": "JAVA_17",
+    "mixins": [
+        "DebugHudMixin"
+    ],
+    "client": [],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

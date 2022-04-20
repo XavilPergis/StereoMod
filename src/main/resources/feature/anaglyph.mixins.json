@@ -1,0 +1,16 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "net.avitech.testbed.feature.anaglyph.mixin",
+    "compatibilityLevel": "JAVA_17",
+    "mixins": [
+        "GameRendererMixin",
+        "CameraAccessorMixin",
+        "Matrix4fMixin",
+        "KeyboardMixin"
+    ],
+    "client": [],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

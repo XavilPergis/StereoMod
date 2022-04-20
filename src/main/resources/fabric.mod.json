@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "id": "testbed",
   "version": "${version}",
-  "name": "Stretchy Days",
-  "description": "A mod for changing the length of the day/night cycle!",
+  "name": "Testbed",
+  "description": "A testbed for lots of little modding ideas!",
   "authors": [
-    "Me!"
+    "Avi"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
@@ -17,19 +17,22 @@
   "entrypoints": {
     "main": [
       "net.avitech.testbed.TestbedMod"
+    ],
+    "client": [
+      "net.avitech.testbed.client.TestbedClientMod"
     ]
   },
   "mixins": [
-    "daystretch.mixins.json",
-    "stackablepotion.mixins.json"
+    "feature/anaglyph.mixins.json",
+    "feature/daystretch.mixins.json",
+    "feature/stackablepotion.mixins.json",
+    "feature/debug.mixins.json",
+    "vr.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.13.3",
     "fabric": "*",
     "minecraft": "1.18.x",
     "java": ">=17"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }
