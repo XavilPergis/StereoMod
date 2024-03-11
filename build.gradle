@@ -1,7 +1,7 @@
-import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
+// import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 
 plugins {
-	id 'fabric-loom' version '0.11-SNAPSHOT'
+	id 'fabric-loom' version '1.5-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -18,15 +18,18 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
+	maven {
+        name "jitpack"
+        url "https://jitpack.io"
+    }
 }
 
-
-def lwjglNativesPlatformName(os) {
-	if (os.isWindows()) return "windows"
-	else if (os.isLinux()) return "linux"
-	else if (os.isMacOsX()) return "macos"
-	throw new RuntimeException("unknown lwjgl platform: ${os.getName()}")
-}
+// def lwjglNativesPlatformName(os) {
+// 	if (os.isWindows()) return "windows"
+// 	else if (os.isLinux()) return "linux"
+// 	else if (os.isMacOsX()) return "macos"
+// 	throw new RuntimeException("unknown lwjgl platform: ${os.getName()}")
+// }
 
 dependencies {
 	// To change the versions see the gradle.properties file
@@ -37,13 +40,7 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	// Not entirely sure about this. I think this finds the host platform, but I want the
-	// *target* platform! Not sure how to do it properly, though.
-	var platform = lwjglNativesPlatformName(DefaultNativePlatform.getCurrentOperatingSystem())
-
-	// OpenVR bindings
-	implementation "org.lwjgl:lwjgl-openvr:${project.lwjgl_openvr_version}"
-	runtimeOnly "org.lwjgl:lwjgl-openvr:$lwjgl_openvr_version:natives-$platform"
+	// modImplementation "com.github.virtuoel:pehkui:${project.pehkui_version}"
 }
 
 processResources {

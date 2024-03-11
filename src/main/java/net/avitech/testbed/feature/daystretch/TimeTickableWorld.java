@@ -1,13 +1,13 @@
 package net.avitech.testbed.feature.daystretch;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.world.World;
 
 public interface TimeTickableWorld {
-    @Nonnull
+    @NotNull
     TimeTicker getTimeTicker();
 
-    @Nonnull
+    @NotNull
     World asMinecraftWorld();
 }

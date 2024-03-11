@@ -37,9 +37,8 @@ public interface LunarWorldViewMixin {
     }
 
     private static float getSkyAngleFromWorld(DimensionType dimensionType, double timeOfDay) {
-        DimensionTypeFixedTimeAccessor accessor = (DimensionTypeFixedTimeAccessor) dimensionType;
-        double time = accessor.getDimensionFixedTime().isPresent()
-                ? (double) accessor.getDimensionFixedTime().getAsLong()
+        double time = dimensionType.fixedTime().isPresent()
+                ? (double) dimensionType.fixedTime().getAsLong()
                 : timeOfDay;
 
         double a = MathHelper.fractionalPart(time / 24000.0 - 0.25);

@@ -1,10 +1,9 @@
 package net.avitech.testbed.util.math;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3f;
-import net.minecraft.util.math.Vector4f;
 
 public class Matrix41 implements Matrix {
     public float a00 = 0f;
@@ -35,7 +34,7 @@ public class Matrix41 implements Matrix {
         dst.a30 = 0f;
     }
 
-    public static @Nonnull Matrix41 makeZeroed() {
+    public static @NotNull Matrix41 makeZeroed() {
         return new Matrix41();
     }
 
@@ -47,94 +46,82 @@ public class Matrix41 implements Matrix {
         return dst;
     }
 
-    public static @Nonnull Matrix41 makeXyzw(float x, float y, float z, float w) {
+    public static @NotNull Matrix41 makeXyzw(float x, float y, float z, float w) {
         return makeXyzwExplicit(x, y, z, w, new Matrix41());
     }
 
-    public static @Nonnull Matrix41 makeXyz1(float x, float y, float z) {
+    public static @NotNull Matrix41 makeXyz1(float x, float y, float z) {
         return makeXyzwExplicit(x, y, z, 1f, new Matrix41());
     }
 
-    public static @Nonnull Matrix41 makeXyz0(float x, float y, float z) {
+    public static @NotNull Matrix41 makeXyz0(float x, float y, float z) {
         return makeXyzwExplicit(x, y, z, 0f, new Matrix41());
     }
 
-    public static @Nonnull Matrix41 makeXyzw(Vec3f vec, float w) {
-        return makeXyzwExplicit(vec.getX(), vec.getY(), vec.getZ(), w, new Matrix41());
-    }
-
-    public static @Nonnull Matrix41 makeXyz1(Vec3f vec) {
-        return makeXyzwExplicit(vec.getX(), vec.getY(), vec.getZ(), 1f, new Matrix41());
-    }
-
-    public static @Nonnull Matrix41 makeXyz0(Vec3f vec) {
-        return makeXyzwExplicit(vec.getX(), vec.getY(), vec.getZ(), 0f, new Matrix41());
-    }
-
-    public static @Nonnull Matrix41 makeXyzw(Vec3d vec, float w) {
+    public static @NotNull Matrix41 makeXyzw(Vec3d vec, float w) {
         return makeXyzwExplicit((float) vec.getX(), (float) vec.getY(), (float) vec.getZ(), w, new Matrix41());
     }
 
-    public static @Nonnull Matrix41 makeXyz1(Vec3d vec) {
+    public static @NotNull Matrix41 makeXyz1(Vec3d vec) {
         return makeXyzwExplicit((float) vec.getX(), (float) vec.getY(), (float) vec.getZ(), 1f, new Matrix41());
     }
 
-    public static @Nonnull Matrix41 makeXyz0(Vec3d vec) {
+    public static @NotNull Matrix41 makeXyz0(Vec3d vec) {
         return makeXyzwExplicit((float) vec.getX(), (float) vec.getY(), (float) vec.getZ(), 0f, new Matrix41());
     }
 
-    public static @Nonnull Matrix41 makePosPositiveX() {
-        return makeXyzwExplicit(1, 0, 0, 1, new Matrix41());
+    public static @NotNull Matrix41 makePosZero() {
+        return makeXyzwExplicit(0, 0, 0, 1, new Matrix41());
     }
 
-    public static @Nonnull Matrix41 makePosPositiveY() {
+    public static @NotNull Matrix41 makePosPositiveY() {
         return makeXyzwExplicit(0, 1, 0, 1, new Matrix41());
     }
 
-    public static @Nonnull Matrix41 makePosPositiveZ() {
+    public static @NotNull Matrix41 makePosPositiveZ() {
         return makeXyzwExplicit(0, 0, 1, 1, new Matrix41());
     }
 
-    public static @Nonnull Matrix41 makePosNegativeX() {
+    public static @NotNull Matrix41 makePosNegativeX() {
         return makeXyzwExplicit(-1, 0, 0, 1, new Matrix41());
     }
 
-    public static @Nonnull Matrix41 makePosNegativeY() {
+    public static @NotNull Matrix41 makePosNegativeY() {
         return makeXyzwExplicit(0, -1, 0, 1, new Matrix41());
     }
 
-    public static @Nonnull Matrix41 makePosNegativeZ() {
+    public static @NotNull Matrix41 makePosNegativeZ() {
         return makeXyzwExplicit(0, 0, -1, 1, new Matrix41());
     }
 
-    public static @Nonnull Matrix41 makeDirPositiveX() {
+    public static @NotNull Matrix41 makeDirPositiveX() {
         return makeXyzwExplicit(1, 0, 0, 0, new Matrix41());
     }
 
-    public static @Nonnull Matrix41 makeDirPositiveY() {
+    public static @NotNull Matrix41 makeDirPositiveY() {
         return makeXyzwExplicit(0, 1, 0, 0, new Matrix41());
     }
 
-    public static @Nonnull Matrix41 makeDirPositiveZ() {
+    public static @NotNull Matrix41 makeDirPositiveZ() {
         return makeXyzwExplicit(0, 0, 1, 0, new Matrix41());
     }
 
-    public static @Nonnull Matrix41 makeDirNegativeX() {
+    public static @NotNull Matrix41 makeDirNegativeX() {
         return makeXyzwExplicit(-1, 0, 0, 0, new Matrix41());
     }
 
-    public static @Nonnull Matrix41 makeDirNegativeY() {
+    public static @NotNull Matrix41 makeDirNegativeY() {
         return makeXyzwExplicit(0, -1, 0, 0, new Matrix41());
     }
 
-    public static @Nonnull Matrix41 makeDirNegativeZ() {
+    public static @NotNull Matrix41 makeDirNegativeZ() {
         return makeXyzwExplicit(0, 0, -1, 0, new Matrix41());
     }
 
     // #endregion
     // #region Matrix copy/cast operations
 
-    public static @Nonnull Matrix copyToDynamicExplicit(@Nonnull Matrix41 src, @Nonnull Matrix dst) {
+    public static @NotNull Matrix copyToDynamicExplicit(@NotNull Matrix41 src, @NotNull Matrix dst) {
         // Copies to self have no effect.
         if (src == dst) {
             return dst;
@@ -154,7 +141,7 @@ public class Matrix41 implements Matrix {
         return dst;
     }
 
-    public static @Nonnull Matrix41 copyFromDynamicExplicit(@Nonnull Matrix src, @Nonnull Matrix41 dst) {
+    public static @NotNull Matrix41 copyFromDynamicExplicit(@NotNull Matrix src, @NotNull Matrix41 dst) {
         // Copies to self have no effect.
         if (src == dst) {
             return dst;
@@ -174,15 +161,15 @@ public class Matrix41 implements Matrix {
         return dst;
     }
 
-    public @Nonnull Matrix41 copyFromDynamicInplace(@Nonnull Matrix src) {
+    public @NotNull Matrix41 copyFromDynamicInplace(@NotNull Matrix src) {
         return copyFromDynamicExplicit(src, this);
     }
 
-    public @Nonnull Matrix copyToDynamic(@Nonnull Matrix dst) {
+    public @NotNull Matrix copyToDynamic(@NotNull Matrix dst) {
         return copyToDynamicExplicit(this, dst);
     }
 
-    public static @Nonnull Matrix41 copyExplicit(@Nonnull Matrix41 src, @Nonnull Matrix41 dst) {
+    public static @NotNull Matrix41 copyExplicit(@NotNull Matrix41 src, @NotNull Matrix41 dst) {
         dst.a00 = src.a00;
         dst.a10 = src.a10;
         dst.a20 = src.a20;
@@ -190,44 +177,19 @@ public class Matrix41 implements Matrix {
         return dst;
     }
 
-    public static @Nonnull Matrix41 copy(@Nonnull Matrix41 src) {
+    public static @NotNull Matrix41 copy(@NotNull Matrix41 src) {
         return copyExplicit(src, new Matrix41());
     }
 
-    public @Nonnull Matrix41 copyFromInplace(@Nonnull Matrix41 src) {
+    public @NotNull Matrix41 copyFromInplace(@NotNull Matrix41 src) {
         return copyExplicit(src, this);
-    }
-
-    public static @Nonnull Matrix41 copyExplicit(@Nonnull Vector4f src, @Nonnull Matrix41 dst) {
-        dst.a00 = src.getX();
-        dst.a10 = src.getY();
-        dst.a20 = src.getZ();
-        dst.a30 = src.getW();
-        return dst;
-    }
-
-    public static @Nonnull Vector4f copyExplicit(@Nonnull Matrix41 src, @Nonnull Vector4f dst) {
-        dst.set(src.a00, src.a10, src.a20, src.a30);
-        return dst;
-    }
-
-    public static @Nonnull Matrix41 copy(@Nonnull Vector4f src) {
-        return copyExplicit(src, new Matrix41());
-    }
-
-    public @Nonnull Matrix41 copyFromInplace(@Nonnull Vector4f src) {
-        return copyExplicit(src, this);
-    }
-
-    public @Nonnull Vector4f copyToInplace(@Nonnull Vector4f dst) {
-        return copyExplicit(this, dst);
     }
 
     // #endregion
     // #region Matrix interface implementation
 
     @Override
-    public @Nonnull Dimensions dimensions() {
+    public @NotNull Dimensions dimensions() {
         return new Dimensions(4, 1);
     }
 
@@ -248,7 +210,7 @@ public class Matrix41 implements Matrix {
                     default: break;
                 }
                 case 3: switch(col) {
-                    case 0: return this.a20;
+                    case 0: return this.a30;
                     default: break;
                 }
                 default: break;

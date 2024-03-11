@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "testbed",
-  "version": "${version}",
+  "version": "0.1.0",
   "name": "Testbed",
   "description": "A testbed for lots of little modding ideas!",
   "authors": [
@@ -17,22 +17,18 @@
   "entrypoints": {
     "main": [
       "net.avitech.testbed.TestbedMod"
-    ],
-    "client": [
-      "net.avitech.testbed.client.TestbedClientMod"
     ]
   },
   "mixins": [
     "feature/anaglyph.mixins.json",
     "feature/daystretch.mixins.json",
     "feature/stackablepotion.mixins.json",
-    "feature/debug.mixins.json",
-    "vr.mixins.json"
+    "feature/debug.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": "*",
     "fabric": "*",
-    "minecraft": "1.18.x",
+    "minecraft": "1.20.1",
     "java": ">=17"
   }
 }

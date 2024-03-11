@@ -1,37 +1,43 @@
 package net.avitech.testbed.feature.anaglyph;
 
-import java.util.Map;
-
-import com.google.common.collect.Maps;
-
-import org.lwjgl.openvr.VR;
+import org.jetbrains.annotations.NotNull;
+import org.joml.Matrix4f;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 @Environment(EnvType.CLIENT)
 public enum Eye {
-    LEFT(VR.EVREye_Eye_Left),
-    RIGHT(VR.EVREye_Eye_Right);
+	LEFT,
+	RIGHT;
 
-    private final int nativeValue;
+	public Eye opposite() {
+		return this == LEFT ? RIGHT : LEFT;
+	}
 
-    private Eye(int nativeValue) {
-        this.nativeValue = nativeValue;
-    }
+	// http://paulbourke.net/stereographics/stereorender/
+	public @NotNull Matrix4f getProjectionMatrixAsymmetric(@NotNull StereoCameraParams params) {
+		float nearHalfHeight = params.planeNear * (float) Math.tan(Math.toRadians(params.verticalFov) / 2.0);
 
-    public int asNative() {
-        return this.nativeValue;
-    }
+		float planeTop = nearHalfHeight;
+		float planeRight = planeTop * params.aspectRatio;
+		float planeBottom = planeTop;
+		float planeLeft = planeRight;
 
-    static Map<Integer, Eye> BY_NATIVE_VALUE = Maps.newHashMap();
-    static {
-        for (var variant : Eye.values()) {
-            BY_NATIVE_VALUE.put(variant.nativeValue, variant);
-        }
-    }
+		final var offset = params.eyeDistance * params.planeNear / params.focalLength;
 
-    public static Eye fromNative(int nativeValue) {
-        return BY_NATIVE_VALUE.getOrDefault(nativeValue, null);
-    }
+		if (this == LEFT) {
+			planeLeft -= offset;
+			planeRight += offset;
+		} else {
+			planeLeft += offset;
+			planeRight -= offset;
+		}
+
+		return new Matrix4f().frustum(
+				-planeLeft, planeRight,
+				-planeBottom, planeTop,
+				params.planeNear, params.planeFar);
+	}
+
 }

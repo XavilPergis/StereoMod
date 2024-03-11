@@ -2,9 +2,9 @@ package net.avitech.testbed.feature.daystretch;
 
 import java.util.OptionalLong;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public interface DimensionTypeFixedTimeAccessor {
-    @Nonnull
+    @NotNull
     OptionalLong getDimensionFixedTime();
 }

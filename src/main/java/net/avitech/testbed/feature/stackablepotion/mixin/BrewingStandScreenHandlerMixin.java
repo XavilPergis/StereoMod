@@ -11,7 +11,7 @@ import net.minecraft.screen.BrewingStandScreenHandler;
 @Mixin(BrewingStandScreenHandler.class)
 public abstract class BrewingStandScreenHandlerMixin {
 
-    @Redirect(method = "transferSlot", slice = @Slice(from = @At(value = "INVOKE", target = "Lnet/minecraft/screen/BrewingStandScreenHandler$PotionSlot;matches")), at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getCount()I", ordinal = 0))
+    @Redirect(method = "quickMove", slice = @Slice(from = @At(value = "INVOKE", target = "Lnet/minecraft/screen/BrewingStandScreenHandler$PotionSlot;matches(Lnet/minecraft/item/ItemStack/ItemStack;)Z")), at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getCount()I", ordinal = 0))
     private int redirectPotionStackCountCheck(ItemStack stack) {
         // we need to make this 1 so that all potion transfers succeed, not just ones
         // that are transferred with a stack size of 1.

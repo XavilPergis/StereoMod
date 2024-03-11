@@ -1,0 +1,15 @@
+{
+	"options.stereo.focal_length": "Focal Length",
+	"options.stereo.eye_offset": "Eye Offset",
+	"options.stereo.mode": "Stereo Mode",
+	"options.stereo.glasses_mode": "Glasses Mode",
+	"options.stereo.mode.none": "Off",
+	"options.stereo.mode.glasses": "3D Glasses",
+	"options.stereo.mode.cross_eye": "Cross-Eye Stereogram",
+	"options.stereo.mode.wall_eye": "Wall-Eye Stereogram",
+	"options.stereo.glasses.red_cyan": "Red/Cyan",
+	"options.stereo.glasses.green_magenta": "Green/Magenta",
+	"options.stereo.glasses.yellow_blue": "Yellow/Blue",
+	"options.stereo.glasses.red_blue": "Red/Blue",
+	"options.stereo.glasses.green_red": "Green/Red"
+}

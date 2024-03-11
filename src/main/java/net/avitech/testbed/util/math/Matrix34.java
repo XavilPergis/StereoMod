@@ -1,11 +1,7 @@
 package net.avitech.testbed.util.math;
 
-import javax.annotation.Nonnull;
-
-import org.lwjgl.openvr.HmdMatrix34;
-
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A single-indirection 3x4 matrix.
@@ -26,7 +22,7 @@ public final class Matrix34 implements Matrix {
 
     // #region Matrix copy/cast operations
 
-    public static @Nonnull Matrix copyToDynamicExplicit(@Nonnull Matrix34 src, @Nonnull Matrix dst) {
+    public static @NotNull Matrix copyToDynamicExplicit(@NotNull Matrix34 src, @NotNull Matrix dst) {
         // Copies to self have no effect.
         if (src == dst) {
             return dst;
@@ -54,7 +50,7 @@ public final class Matrix34 implements Matrix {
         return dst;
     }
 
-    public static @Nonnull Matrix34 copyFromDynamicExplicit(@Nonnull Matrix src, @Nonnull Matrix34 dst) {
+    public static @NotNull Matrix34 copyFromDynamicExplicit(@NotNull Matrix src, @NotNull Matrix34 dst) {
         // Copies to self have no effect.
         if (src == dst) {
             return dst;
@@ -82,44 +78,15 @@ public final class Matrix34 implements Matrix {
         return dst;
     }
 
-    public @Nonnull Matrix34 copyFromDynamicInplace(@Nonnull Matrix src) {
+    public @NotNull Matrix34 copyFromDynamicInplace(@NotNull Matrix src) {
         return copyFromDynamicExplicit(src, this);
     }
 
-    public @Nonnull Matrix copyToDynamic(@Nonnull Matrix dst) {
+    public @NotNull Matrix copyToDynamic(@NotNull Matrix dst) {
         return copyToDynamicExplicit(this, dst);
     }
 
-    @Environment(EnvType.CLIENT)
-    public static @Nonnull Matrix34 copyExplicit(@Nonnull HmdMatrix34 src, @Nonnull Matrix34 dst) {
-        // The matrix we get from OpenVR seems to be stored in a row-major order.
-        int i = 0;
-        dst.a00 = src.m(i++);
-        dst.a01 = src.m(i++);
-        dst.a02 = src.m(i++);
-        dst.a03 = src.m(i++);
-        dst.a10 = src.m(i++);
-        dst.a11 = src.m(i++);
-        dst.a12 = src.m(i++);
-        dst.a13 = src.m(i++);
-        dst.a20 = src.m(i++);
-        dst.a21 = src.m(i++);
-        dst.a22 = src.m(i++);
-        dst.a23 = src.m(i++);
-        return dst;
-    }
-
-    @Environment(EnvType.CLIENT)
-    public static @Nonnull Matrix34 copy(@Nonnull HmdMatrix34 src) {
-        return copyExplicit(src, new Matrix34());
-    }
-
-    @Environment(EnvType.CLIENT)
-    public @Nonnull Matrix34 copyFromInplace(@Nonnull HmdMatrix34 src) {
-        return copyExplicit(src, this);
-    }
-
-    public static @Nonnull Matrix34 copyExplicit(@Nonnull Matrix34 src, @Nonnull Matrix34 dst) {
+    public static @NotNull Matrix34 copyExplicit(@NotNull Matrix34 src, @NotNull Matrix34 dst) {
         dst.a00 = src.a00;
         dst.a01 = src.a01;
         dst.a02 = src.a02;
@@ -135,11 +102,11 @@ public final class Matrix34 implements Matrix {
         return dst;
     }
 
-    public static @Nonnull Matrix34 copy(@Nonnull Matrix34 src) {
+    public static @NotNull Matrix34 copy(@NotNull Matrix34 src) {
         return copyExplicit(src, new Matrix34());
     }
 
-    public @Nonnull Matrix34 copyFromInplace(@Nonnull Matrix34 src) {
+    public @NotNull Matrix34 copyFromInplace(@NotNull Matrix34 src) {
         return copyExplicit(src, this);
     }
 
@@ -147,7 +114,7 @@ public final class Matrix34 implements Matrix {
     // #region Matrix interface implementation
 
     @Override
-    public @Nonnull Dimensions dimensions() {
+    public @NotNull Dimensions dimensions() {
         return new Dimensions(3, 4);
     }
 

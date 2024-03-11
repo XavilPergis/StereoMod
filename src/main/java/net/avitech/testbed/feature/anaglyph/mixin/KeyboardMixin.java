@@ -19,7 +19,6 @@ public abstract class KeyboardMixin {
 
     @Inject(method = "processF3", at = @At("HEAD"), cancellable = true)
     private void enableAdditionalDebugFeatures(int key, CallbackInfoReturnable<Boolean> info) {
-        System.out.println("KEY=" + key);
         if (processDebugKeys(key)) {
             info.setReturnValue(true);
         }

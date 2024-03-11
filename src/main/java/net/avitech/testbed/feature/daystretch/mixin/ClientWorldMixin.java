@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 
 @Mixin(ClientWorld.class)
 public abstract class ClientWorldMixin implements TimeTickableWorld {
-    @Invoker("setTimeOfDay(L)V")
+    @Invoker("setTimeOfDay")
     protected abstract void invokeSetTimeOfDay(long time);
 
     private TimeTicker timeTicker = new TimeTicker((World) (Object) this);

@@ -1,6 +1,6 @@
 package net.avitech.testbed.util.math;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class DynamicMatrix implements Matrix {
 
@@ -11,18 +11,18 @@ public class DynamicMatrix implements Matrix {
     private DynamicMatrix() {
     }
 
-    private static float[] makeStorageForDimensions(@Nonnull Matrix.Dimensions dimensions) {
+    private static float[] makeStorageForDimensions(@NotNull Matrix.Dimensions dimensions) {
         float[] values = new float[dimensions.rows() * dimensions.columns()];
         return values;
     }
 
-    public static DynamicMatrix makeZeroedExplicit(@Nonnull Matrix.Dimensions dimensions, DynamicMatrix dst) {
+    public static DynamicMatrix makeZeroedExplicit(@NotNull Matrix.Dimensions dimensions, DynamicMatrix dst) {
         dst.dimensions = dimensions;
         dst.values = makeStorageForDimensions(dimensions);
         return dst;
     }
 
-    public static @Nonnull DynamicMatrix makeZeroed(@Nonnull Matrix.Dimensions dimensions) {
+    public static @NotNull DynamicMatrix makeZeroed(@NotNull Matrix.Dimensions dimensions) {
         return makeZeroedExplicit(dimensions, new DynamicMatrix());
     }
 
@@ -35,7 +35,7 @@ public class DynamicMatrix implements Matrix {
         return dst;
     }
 
-    public static @Nonnull DynamicMatrix makeIdentity(int size) {
+    public static @NotNull DynamicMatrix makeIdentity(int size) {
         return makeIdentityExplicit(size, new DynamicMatrix());
     }
 
@@ -46,7 +46,7 @@ public class DynamicMatrix implements Matrix {
      * @param dimensions
      * @return
      */
-    public @Nonnull DynamicMatrix resizeUndefined(@Nonnull Matrix.Dimensions dimensions) {
+    public @NotNull DynamicMatrix resizeUndefined(@NotNull Matrix.Dimensions dimensions) {
         if (!dimensions.equals(this.dimensions)) {
             this.dimensions = dimensions;
             this.values = makeStorageForDimensions(dimensions);
@@ -55,7 +55,7 @@ public class DynamicMatrix implements Matrix {
         return this;
     }
 
-    public static @Nonnull DynamicMatrix copyExplicit(@Nonnull DynamicMatrix src, @Nonnull DynamicMatrix dst) {
+    public static @NotNull DynamicMatrix copyExplicit(@NotNull DynamicMatrix src, @NotNull DynamicMatrix dst) {
         if (src == dst) {
             return dst;
         }
@@ -72,20 +72,20 @@ public class DynamicMatrix implements Matrix {
         return dst;
     }
 
-    public static @Nonnull DynamicMatrix copy(@Nonnull DynamicMatrix src) {
+    public static @NotNull DynamicMatrix copy(@NotNull DynamicMatrix src) {
         return copyExplicit(src, new DynamicMatrix());
     }
 
-    public @Nonnull DynamicMatrix copyFromInplace(@Nonnull DynamicMatrix src) {
+    public @NotNull DynamicMatrix copyFromInplace(@NotNull DynamicMatrix src) {
         return copyExplicit(src, this);
     }
 
-    public @Nonnull DynamicMatrix copyToInplace(@Nonnull DynamicMatrix dst) {
+    public @NotNull DynamicMatrix copyToInplace(@NotNull DynamicMatrix dst) {
         return copyExplicit(this, dst);
     }
 
-    public static @Nonnull DynamicMatrix multiplyExplicit(@Nonnull DynamicMatrix lhs, @Nonnull DynamicMatrix rhs,
-            @Nonnull DynamicMatrix dst) {
+    public static @NotNull DynamicMatrix multiplyExplicit(@NotNull DynamicMatrix lhs, @NotNull DynamicMatrix rhs,
+            @NotNull DynamicMatrix dst) {
 
         // matrix multiplication only works if the number of columns in the lhs is the
         // same as the number of rows in the rhs. This is because you take the dot
@@ -120,7 +120,7 @@ public class DynamicMatrix implements Matrix {
         return dst;
     }
 
-    public static @Nonnull DynamicMatrix multiply(@Nonnull DynamicMatrix lhs, @Nonnull DynamicMatrix rhs) {
+    public static @NotNull DynamicMatrix multiply(@NotNull DynamicMatrix lhs, @NotNull DynamicMatrix rhs) {
         return multiplyExplicit(lhs, rhs, new DynamicMatrix());
     }
 

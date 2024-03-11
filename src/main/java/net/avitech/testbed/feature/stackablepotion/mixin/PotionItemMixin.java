@@ -13,12 +13,12 @@ import net.minecraft.item.PotionItem;
 @Mixin(PotionItem.class)
 public abstract class PotionItemMixin {
 
-    @Redirect(method = "finishUsing", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerInventory;insertStack"))
-    private boolean redirectGlassBottleInsertion(PlayerInventory inventory, ItemStack stack) {
-        inventory.offerOrDrop(stack);
-        // I don't think the return value here actually matters
-        return true;
-    }
+    // @Redirect(method = "finishUsing", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerInventory;insertStack(Lnet/minecraft/item/ItemStack/ItemStack;)Z"))
+    // private boolean redirectGlassBottleInsertion(PlayerInventory inventory, ItemStack stack) {
+    //     inventory.offerOrDrop(stack);
+    //     // I don't think the return value here actually matters
+    //     return true;
+    // }
 
     @Inject(method = "getMaxUseTime", at = @At("HEAD"), cancellable = true)
     private void adjustPotionUseTime(ItemStack stack, CallbackInfoReturnable<Integer> info) {

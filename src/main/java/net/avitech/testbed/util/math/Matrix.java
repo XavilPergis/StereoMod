@@ -1,6 +1,6 @@
 package net.avitech.testbed.util.math;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Tools for working with matrices of unknown sizes. As such, the
@@ -13,7 +13,7 @@ import javax.annotation.Nonnull;
  */
 public interface Matrix {
 
-    @Nonnull
+    @NotNull
     Dimensions dimensions();
 
     float getDynamic(int row, int column);
@@ -43,7 +43,7 @@ public interface Matrix {
      *                                  in sizes.
      * @return The {@code dst} parameter.
      */
-    public static @Nonnull Matrix copyDynamicExplicit(@Nonnull Matrix src, @Nonnull Matrix dst) {
+    public static @NotNull Matrix copyDynamicExplicit(@NotNull Matrix src, @NotNull Matrix dst) {
         var srcDimensions = src.dimensions();
         var dstDimensions = dst.dimensions();
         if (srcDimensions.rows() != dstDimensions.rows() || srcDimensions.columns() != dstDimensions.columns()) {
@@ -70,7 +70,7 @@ public interface Matrix {
      * @param dst The matrix this operation will store to.
      * @return The {@code dst} parameter.
      */
-    public static @Nonnull Matrix copyOverlappingDynamicExplicit(@Nonnull Matrix src, @Nonnull Matrix dst) {
+    public static @NotNull Matrix copyOverlappingDynamicExplicit(@NotNull Matrix src, @NotNull Matrix dst) {
         var srcDimensions = src.dimensions();
         var dstDimensions = dst.dimensions();
         var rowsToCopy = Math.min(srcDimensions.rows(), dstDimensions.rows());
@@ -84,8 +84,8 @@ public interface Matrix {
         return dst;
     }
 
-    public static @Nonnull Matrix multiplyDynamicExplicit(@Nonnull Matrix lhs, @Nonnull Matrix rhs,
-            @Nonnull Matrix dst) {
+    public static @NotNull Matrix multiplyDynamicExplicit(@NotNull Matrix lhs, @NotNull Matrix rhs,
+            @NotNull Matrix dst) {
         var rhsDimensions = rhs.dimensions();
         var lhsDimensions = lhs.dimensions();
 

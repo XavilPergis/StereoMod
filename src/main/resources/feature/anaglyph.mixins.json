@@ -4,10 +4,13 @@
     "package": "net.avitech.testbed.feature.anaglyph.mixin",
     "compatibilityLevel": "JAVA_17",
     "mixins": [
+        "MinecraftClientMixin",
         "GameRendererMixin",
         "CameraAccessorMixin",
-        "Matrix4fMixin",
-        "KeyboardMixin"
+        "KeyboardMixin",
+        "InGameHudMixin",
+        "VideoOptionsScreenMixin",
+        "WindowMixin"
     ],
     "client": [],
     "injectors": {

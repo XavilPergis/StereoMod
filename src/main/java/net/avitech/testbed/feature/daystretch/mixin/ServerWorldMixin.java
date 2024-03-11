@@ -2,15 +2,17 @@ package net.avitech.testbed.feature.daystretch.mixin;
 
 import net.avitech.testbed.feature.daystretch.TimeTickableWorld;
 import net.avitech.testbed.feature.daystretch.TimeTicker;
-import net.minecraft.network.Packet;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.WorldTimeUpdateS2CPacket;
 import net.minecraft.server.PlayerManager;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
+import net.minecraft.world.level.ServerWorldProperties;
 
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Invoker;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -19,8 +21,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ServerWorld.class)
 public abstract class ServerWorldMixin implements TimeTickableWorld {
 
-	@Invoker("setTimeOfDay(L)V")
-	protected abstract void invokeSetTimeOfDay(long time);
+	@Shadow
+	@Final
+	private ServerWorldProperties worldProperties;
 
 	private TimeTicker timeTicker = new TimeTicker((World) (Object) this);
 
@@ -28,7 +31,7 @@ public abstract class ServerWorldMixin implements TimeTickableWorld {
 	private void redirectTimeOfDayTick(ServerWorld self, long requestedTime) {
 		long updatedTimeOfDay = timeTicker.tick();
 		if (self.getLevelProperties().getTimeOfDay() != updatedTimeOfDay) {
-			invokeSetTimeOfDay(updatedTimeOfDay);
+			worldProperties.setTimeOfDay(updatedTimeOfDay);
 		}
 	}
 
