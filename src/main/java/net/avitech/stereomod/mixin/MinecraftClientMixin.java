@@ -38,7 +38,6 @@ public abstract class MinecraftClientMixin extends ReentrantThreadExecutor<Runna
 	@Nullable
 	@Shadow
 	private ProfileResult tickProfilerResult;
-
 	@Shadow
 	private volatile boolean paused;
 	@Shadow
@@ -55,9 +54,10 @@ public abstract class MinecraftClientMixin extends ReentrantThreadExecutor<Runna
 	@Final
 	private BufferBuilderStorage bufferBuilders;
 
+	// i dont think you need @Unique for private fields but like, eh, why not
+	// anyways :P
 	@Unique
 	private static long capturedMeasuringTime;
-
 	@Unique
 	private StereoConfig.Mode lastMode;
 
@@ -81,10 +81,8 @@ public abstract class MinecraftClientMixin extends ReentrantThreadExecutor<Runna
 		}
 	}
 
-	// cursed cursed cursed cursed cursed
 	@Inject(method = "render", at = @At("HEAD"))
 	private void setup(boolean tick, CallbackInfo info) {
-		StereoRenderer.INSTANCE.setup();
 		StereoRenderer.INSTANCE.currentEye = Eye.RIGHT;
 	}
 
@@ -94,6 +92,7 @@ public abstract class MinecraftClientMixin extends ReentrantThreadExecutor<Runna
 		if (!mode.isEnabled())
 			return;
 
+		@SuppressWarnings("resource")
 		final var self = (MinecraftClient) (Object) this;
 		final var partialTick = this.paused ? this.pausedTickDelta : this.renderTickCounter.tickDelta;
 
@@ -110,7 +109,7 @@ public abstract class MinecraftClientMixin extends ReentrantThreadExecutor<Runna
 	}
 
 	@Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gl/Framebuffer;draw(II)V"))
-	private void blitRightEye(Framebuffer framebuffer, int width, int height, boolean tick) {
+	private void drawEyesToBackbuffer(Framebuffer framebuffer, int width, int height, boolean tick) {
 		final var mode = StereoConfig.INSTANCE.stereoModeOption.getValue();
 		if (!mode.isEnabled()) {
 			framebuffer.draw(width, height);
