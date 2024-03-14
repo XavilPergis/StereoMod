@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "testbed",
+  "id": "stereomod",
   "version": "0.1.0",
-  "name": "Testbed",
-  "description": "A testbed for lots of little modding ideas!",
+  "name": "Stereo Mod",
+  "description": "Stereo Rendering for Minecraft!",
   "authors": [
     "Avi"
   ],
@@ -11,19 +11,16 @@
     "homepage": "https://fabricmc.net/",
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
-  "license": "CC0-1.0",
-  "icon": "assets/testbed/icon.png",
+  "license": "MIT",
+  "icon": "assets/stereomod/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.avitech.testbed.TestbedMod"
+      "net.avitech.stereomod.StereoMod"
     ]
   },
   "mixins": [
-    "feature/anaglyph.mixins.json",
-    "feature/daystretch.mixins.json",
-    "feature/stackablepotion.mixins.json",
-    "feature/debug.mixins.json"
+    "stereomod.mixins.json"
   ],
   "depends": {
     "fabricloader": "*",

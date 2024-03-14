@@ -1,0 +1,19 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "net.avitech.stereomod.mixin",
+    "compatibilityLevel": "JAVA_17",
+    "mixins": [
+        "MinecraftClientMixin",
+        "GameRendererMixin",
+        "CameraAccessorMixin",
+        "KeyboardMixin",
+        "InGameHudMixin",
+        "VideoOptionsScreenMixin",
+        "WindowMixin"
+    ],
+    "client": [],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
